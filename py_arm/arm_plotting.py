@@ -138,7 +138,7 @@ def draw_c_space(arm, ax, obstacles, obstacle_colors):
     for i, obstacle in enumerate(obstacles):
         coll_points = collision_thetas(arm, obstacle)
         shapes = find_polygons(coll_points)
-        for shape in shapes:
+        for shape in shapes.geoms:
             xs, ys = shape.exterior.xy
             ax.fill(xs, ys, facecolor=obstacle_colors[i])
 
