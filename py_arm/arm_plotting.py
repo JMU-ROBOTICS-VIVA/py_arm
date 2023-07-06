@@ -124,8 +124,8 @@ def find_polygons(points):
     shapes = shapely.ops.triangulate(points)
     med = np.median([shape.area for shape in shapes])
     small_shapes = [shape for shape in shapes if shape.area <= med * 1.05]
-    result = shapely.ops.unary_union(MultiPolygon(small_shapes))
-    if not hasattr(result, '__iter__'):
+    result = shapely.ops.unary_union(small_shapes)
+    if not isinstance(result, MultiPolygon):
         result = MultiPolygon([result])
     return result
 
